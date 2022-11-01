@@ -5,21 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Picture extends Model
+class Location extends Model
 {
     use HasFactory;
 
-    //Relationships
-
-    //Has
-
-    //Belongs
-    public function ads()
-    {
-        return $this->belongsTo(Ad::class);
-    }
-
-    public function owner()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
