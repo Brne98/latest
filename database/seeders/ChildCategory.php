@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Picture;
+use App\Models\Category;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PictureSeeder extends Seeder
+class ChildCategory extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,7 @@ class PictureSeeder extends Seeder
      */
     public function run()
     {
-        Picture::factory(5)->create();
+        $parent = Category::find(2);
+        Category::factory(3)->create(['parent_category' => $parent['name']]);
     }
 }

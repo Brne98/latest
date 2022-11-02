@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,13 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $user = User::first();
+
         return [
-            //
+            'name' => fake()->word(),
+            'slug' => fake()->slug(),
+            'created_by' =>$user['name'],
+            'updated_by' =>$user['name'],
         ];
     }
 }

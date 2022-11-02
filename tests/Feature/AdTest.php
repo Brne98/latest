@@ -2,21 +2,26 @@
 
 namespace Tests\Feature;
 
+use App\Models\Ad;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AdTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    /** @test */
+    public function a_user_can_create_an_ad()
     {
-        $response = $this->get('/');
+        $ad = Ad::all();
+        $attributes = [
+            'title' => $ad-['title'],
+            'description' => $ad->description,
+        ];
 
-        $response->assertStatus(200);
+        $this->get('/ad', $attributes);
+
+        $this->assertDatabaseHas('ads', $attributes );
     }
+
+
 }

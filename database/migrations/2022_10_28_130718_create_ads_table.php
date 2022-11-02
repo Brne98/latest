@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
+            $table->foreignId('owner_id')->constrained('users','id');
+            $table->foreignId('category_id')->constrained('categories', 'id');
             $table->string('title');
             $table->string('currency');
             $table->integer('price');
@@ -25,10 +25,8 @@ return new class extends Migration
             $table->string('owner_phone');
             $table->string('description');
             $table->string('slug');
-            $table->unsignedBigInteger('owner');
-            $table->string('category');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
@@ -40,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('ads');
     }
 };

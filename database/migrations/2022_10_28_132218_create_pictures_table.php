@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('ad_id');
+            $table->foreignId('owner_id')->constrained('users', 'id');
+            $table->foreignId('ad_id')->constrained('ads', 'id');
             $table->string('title');
             $table->string('path');
-            $table->string('owner');
-            $table->string('ad');
+            $table->string('ad_name');
             $table->string('order');
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }
