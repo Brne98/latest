@@ -16,7 +16,7 @@ class AdSeeder extends Seeder
      */
     public function run()
     {
-    $user = User::first();
+    $user = User::count() > 0 ? User::first() : User::factory()->create();
 
     Ad::factory(2)->create([
         'owner_id' => $user['id'],

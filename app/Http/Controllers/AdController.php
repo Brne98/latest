@@ -13,19 +13,19 @@ class AdController extends Controller
 {
     public function index()
     {
-        return view('ads.index',[
+        return [
             'ads' => Ad::all(),
             'categories' => Category::all(),
             'pictures' => Picture::all()->where('ad_id', 'like','1')
-        ]);
+        ];
     }
 
     public function show(Ad $ad)
     {
-        return view('ads.show',[
+        return [
             'ad' => $ad,
             'pictures' => Picture::all()->where('ad_id', 'like','1')
 
-        ]);
+        ];
     }
 }

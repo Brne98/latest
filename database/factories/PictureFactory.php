@@ -22,11 +22,18 @@ class PictureFactory extends Factory
     {
         $user=User::first();
 
-        if(isNull(Ad::all())){
-            $title = Ad::first()->title;
-        }else{
-            $title = Ad::find(2);
+        $ad= Ad::first();
+        if($ad !== null){
+            $title = $ad->title;
+        } else {
+            $title = Ad::factory()->create()->title;
         }
+
+//        if(isNull(Ad::all())){
+//            $title = Ad::first()->title;
+//        }else{
+//            $title = Ad::find(2);
+//        }
 
         return [
             'owner_id' => $user['id'],
