@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AdController::class, 'index']);
-Route::get('/ad/{ad:slug}',[AdController::class, 'show']);
+//Ads
+
+
 

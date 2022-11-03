@@ -12,7 +12,7 @@ class Ad extends Model
     //Relationships
 
     //Has
-    public function picture()
+    public function pictures()
     {
         return $this->hasMany(Picture::class);
     }
