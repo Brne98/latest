@@ -36,7 +36,7 @@ class AdController extends Controller
 
         Ad::create($ad);
 
-        return $this->respondSuccess($ad);
+        return $this->respondSuccess($ad, 201);
     }
 
     public function update(Ad $ad) //UPDATE
@@ -61,7 +61,7 @@ class AdController extends Controller
     {
         $ad->delete();
 
-        return $this->respondSuccess($ad);
+        return $this->respondSuccess($ad, 204);
     }
 }
 
