@@ -22,9 +22,10 @@ class AdController extends Controller
         ];
     }
 
-    public function store(Request $request) //STORE
+    public function store() //STORE
     {
         $ad = request()->validate([
+            'owner_id' => 'required',
             'category_id' => 'required',
             'title' => 'required',
             'currency' => 'required' ,
@@ -36,7 +37,7 @@ class AdController extends Controller
             'slug' => 'required' ,
         ]);
 
-        $ad['owner_id'] = 1;
+//        $ad['owner_id'] = 1;
 
         Ad::create($ad);
 
@@ -46,6 +47,7 @@ class AdController extends Controller
     public function update(Ad $ad) //UPDATE
     {
         $data = request()->validate([
+            'category_id' => 'required',
             'title' => 'required',
             'currency' => 'required' ,
             'price' => 'required' ,
@@ -55,6 +57,8 @@ class AdController extends Controller
             'description' => 'required' ,
             'slug' => 'required' ,
         ]);
+
+        $data['owner_id'] = 1;
 
         $ad->update($data);
 

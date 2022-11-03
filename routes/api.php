@@ -23,6 +23,6 @@ Route::prefix('ads')->group(function () {
     Route::get('', [AdController::class, 'index']);
     Route::get('{ad:slug}',[AdController::class, 'show']);
     Route::post('', [AdController::class, 'store']);
-    Route::patch('{ad}', [AdController::class, 'update']);
-    Route::delete('{ad}', [AdController::class, 'destroy']);
+    Route::put('{ad:id}', [AdController::class, 'update']);
+    Route::delete('{ad:id}', [AdController::class, 'destroy']);
 });
