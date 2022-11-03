@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ad;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 class AdController extends Controller
@@ -21,9 +22,10 @@ class AdController extends Controller
         ];
     }
 
-    public function store() //STORE
+    public function store(Request $request) //STORE
     {
         $ad = request()->validate([
+            'category_id' => 'required',
             'title' => 'required',
             'currency' => 'required' ,
             'price' => 'required' ,
@@ -33,6 +35,8 @@ class AdController extends Controller
             'description' => 'required' ,
             'slug' => 'required' ,
         ]);
+
+        $ad['owner_id'] = 1;
 
         Ad::create($ad);
 
