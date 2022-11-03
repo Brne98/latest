@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,12 @@ Route::prefix('ads')->group(function () {
     Route::post('', [AdController::class, 'store']);
     Route::put('{ad:id}', [AdController::class, 'update']);
     Route::delete('{ad:id}', [AdController::class, 'destroy']);
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('', [CategoryController::class, 'index']);
+    Route::get('{ad:slug}',[CategoryController::class, 'show']);
+    Route::post('', [CategoryController::class, 'store']);
+    Route::put('{ad:id}', [CategoryController::class, 'update']);
+    Route::delete('{ad:id}', [CategoryController::class, 'destroy']);
 });

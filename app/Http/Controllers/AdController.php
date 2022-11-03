@@ -15,14 +15,14 @@ class AdController extends Controller
         return $this->respondSuccess($ads);
     }
 
-    public function show(Ad $ad)
+    public function show(Ad $ad): JsonResponse
     {
         return [
             'ad' => $ad
         ];
     }
 
-    public function store() //STORE
+    public function store(): JsonResponse
     {
         $ad = request()->validate([
             'owner_id' => 'required',
@@ -44,7 +44,7 @@ class AdController extends Controller
         return $this->respondSuccess($ad, 201);
     }
 
-    public function update(Ad $ad) //UPDATE
+    public function update(Ad $ad): JsonResponse
     {
         $data = request()->validate([
             'category_id' => 'required',
@@ -65,7 +65,7 @@ class AdController extends Controller
         return $this->respondSuccess($ad);
     }
 
-    public function destroy(Ad $ad)
+    public function destroy(Ad $ad): JsonResponse
     {
         $ad->delete();
 
