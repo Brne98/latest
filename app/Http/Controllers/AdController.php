@@ -15,6 +15,7 @@ class AdController extends Controller
         return $this->respondSuccess($ads);
     }
 
+    //PROBLEM
     public function show(Ad $ad): JsonResponse
     {
         return [
