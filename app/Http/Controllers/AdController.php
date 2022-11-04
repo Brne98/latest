@@ -15,11 +15,10 @@ class AdController extends Controller
         return $this->respondSuccess($ads);
     }
 
+    //Problem
     public function show(Ad $ad): JsonResponse
     {
-        return [
-            'ad' => $ad
-        ];
+        return $this->respondSuccess($ad);
     }
 
     public function store(): JsonResponse

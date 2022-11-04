@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('ads')->group(function () {
     Route::get('', [AdController::class, 'index']);
-    Route::get('{ad:slug}',[AdController::class, 'show']);
+    Route::get('{ad:id}',[AdController::class, 'show']);
     Route::post('', [AdController::class, 'store']);
     Route::put('{ad:id}', [AdController::class, 'update']);
     Route::delete('{ad:id}', [AdController::class, 'destroy']);
@@ -30,8 +30,8 @@ Route::prefix('ads')->group(function () {
 
 Route::prefix('categories')->group(function () {
     Route::get('', [CategoryController::class, 'index']);
-    Route::get('{ad:slug}',[CategoryController::class, 'show']);
+    Route::get('{category:id}',[CategoryController::class, 'show']);
     Route::post('', [CategoryController::class, 'store']);
-    Route::put('{ad:id}', [CategoryController::class, 'update']);
-    Route::delete('{ad:id}', [CategoryController::class, 'destroy']);
+    Route::put('{category:id}', [CategoryController::class, 'update']);
+    Route::delete('{category:id}', [CategoryController::class, 'destroy']);
 });

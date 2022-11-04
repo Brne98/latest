@@ -20,7 +20,6 @@ class CategoryController extends Controller
     public function show(Category $category): JsonResponse
     {
         return $this->respondSuccess($category, 201);
-
     }
 
     public function store(){
