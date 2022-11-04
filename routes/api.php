@@ -20,18 +20,18 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::prefix('ads')->group(function () {
-    Route::get('', [AdController::class, 'index']);
-    Route::get('{ad:id}',[AdController::class, 'show']);
-    Route::post('', [AdController::class, 'store']);
-    Route::put('{ad:id}', [AdController::class, 'update']);
-    Route::delete('{ad:id}', [AdController::class, 'destroy']);
+Route::prefix('ads')->controller(AdController::class)->group(function () {
+    Route::get('', 'index');
+    Route::get('{ad:slug}','show');
+    Route::post('', 'store');
+    Route::put('{ad:id}', 'update');
+    Route::delete('{ad:id}', 'destroy');
 });
 
-Route::prefix('categories')->group(function () {
-    Route::get('', [CategoryController::class, 'index']);
-    Route::get('{category:id}',[CategoryController::class, 'show']);
-    Route::post('', [CategoryController::class, 'store']);
-    Route::put('{category:id}', [CategoryController::class, 'update']);
-    Route::delete('{category:id}', [CategoryController::class, 'destroy']);
+Route::prefix('categories')->controller(CategoryController::class)->group(function () {
+    Route::get('', 'index');
+    Route::get('{category:slug}','show');
+    Route::post('', 'store');
+    Route::put('{category:id}', 'update');
+    Route::delete('{category:id}', 'destroy');
 });

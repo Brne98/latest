@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $data = request()->validate([
             'name' => 'required',
             'parent_category' => '',
-            'slug' => 'required',
+            'slug' => 'required|unique',
         ]);
 
         Category::create($data);
@@ -39,7 +39,7 @@ class CategoryController extends Controller
         $data = request()->validate( [
             'name' => 'required',
             'parent_category' => 'required',
-            'slug' => 'required',
+            'slug' => 'required|unique',
         ]);
 
         $category->update($data);

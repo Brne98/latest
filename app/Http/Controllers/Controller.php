@@ -22,7 +22,7 @@ class Controller extends BaseController
         return $this->respond($data, $code);
     }
 
-    public function respondFailure() {
-
+    public function respondFailure($code = 404) {
+        return $this->respond('Error', $code);
     }
 }

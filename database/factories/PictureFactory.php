@@ -29,12 +29,6 @@ class PictureFactory extends Factory
             $title = Ad::factory()->create()->title;
         }
 
-//        if(isNull(Ad::all())){
-//            $title = Ad::first()->title;
-//        }else{
-//            $title = Ad::find(2);
-//        }
-
         return [
             'owner_id' => $user['id'],
             'ad_id' => 1,

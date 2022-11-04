@@ -19,8 +19,13 @@ class AdFactory extends Factory
      */
     public function definition()
     {
+        $users = User::all();
+        if($users->count() > 0){
+            $user = User::first();
+        } else {
+            $user = User::factory()->create();
+        }
 
-        $user = User::first();
         return [
             'title' => fake()->word(),
             'currency' => fake()->word(),

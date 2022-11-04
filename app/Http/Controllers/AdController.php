@@ -15,11 +15,7 @@ class AdController extends Controller
         return $this->respondSuccess($ads);
     }
 
-<<<<<<< HEAD
-    //Problem
-=======
-    //PROBLEM
->>>>>>> 8c6bc636fbe321502395636d4a25a1ab77937449
+
     public function show(Ad $ad): JsonResponse
     {
         return $this->respondSuccess($ad);
@@ -32,15 +28,13 @@ class AdController extends Controller
             'category_id' => 'required',
             'title' => 'required',
             'currency' => 'required' ,
-            'price' => 'required' ,
+            'price' => 'required|numeric|min:0' ,
             'price_type' => 'required' ,
             'owner_name' => 'required' ,
             'owner_phone' => 'required' ,
             'description' => 'required' ,
             'slug' => 'required' ,
         ]);
-
-//        $ad['owner_id'] = 1;
 
         Ad::create($ad);
 
@@ -53,7 +47,7 @@ class AdController extends Controller
             'category_id' => 'required',
             'title' => 'required',
             'currency' => 'required' ,
-            'price' => 'required' ,
+            'price' => 'required|numeric|min:0' ,
             'price_type' => 'required' ,
             'owner_name' => 'required' ,
             'owner_phone' => 'required' ,
@@ -72,7 +66,7 @@ class AdController extends Controller
     {
         $ad->delete();
 
-        return $this->respondSuccess($ad, 204);
+        return $this->respondSuccess(null, 204);
     }
 }
 
