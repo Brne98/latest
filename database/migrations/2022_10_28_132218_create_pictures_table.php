@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('pictures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')->constrained('users', 'id')->cascadeOnDelete();
-            $table->foreignId('ad_id')->constrained('ads', 'id')->cascadeOnDelete();
+            $table->foreignId('owner_id')->constrained('users', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('ad_id')->constrained('ads', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('path');
             $table->string('ad_name');
