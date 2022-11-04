@@ -44,15 +44,15 @@ class AdController extends Controller
     public function update(Ad $ad): JsonResponse
     {
         $data = request()->validate([
-            'category_id' => 'required',
-            'title' => 'required',
-            'currency' => 'required' ,
-            'price' => 'required|numeric|min:0' ,
-            'price_type' => 'required' ,
-            'owner_name' => 'required' ,
-            'owner_phone' => 'required' ,
-            'description' => 'required' ,
-            'slug' => 'required' ,
+            'category_id' => '',
+            'title' => '',
+            'currency' => '' ,
+            'price' => 'numeric|min:0' ,
+            'price_type' => '' ,
+            'owner_name' => '' ,
+            'owner_phone' => '' ,
+            'description' => '' ,
+            'slug' => '' ,
         ]);
 
         $data['owner_id'] = 1;

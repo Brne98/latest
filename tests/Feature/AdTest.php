@@ -16,132 +16,82 @@ class AdTest extends TestCase
 
 
     /** @test */
-    public function an_ad_requires_a_title()
+    public function a_user_can_see_all_ads()
     {
+        $response = $this->get('/api/ads');
 
-        $attributes = [
-            'title' => Ad::first()->title,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['title']);
+        $response->assertStatus(200);
 
     }
 
     /** @test */
-    public function an_ad_requires_a_currency()
+    public function a_user_can_see_a_single_ad()
     {
+        $ad = Ad::factory()->create();
 
-        $attributes = [
-            'currency' => Ad::first()->currency,
+        $response = $this->get('/api/ads/' . $ad->slug);
+
+        $response->assertStatus(200);
+
+    }
+
+    /** @test  */
+    public function a_user_can_create_an_ad()
+    {
+        $ad = Ad::factory()->raw();
+
+        $response = $this->post('api/ads', $ad);
+
+        $response->assertStatus(201);
+    }
+
+    /** @test */
+    public function a_user_can_update_an_ad()
+    {
+        $ad = Ad::first();
+
+        $data = [
+            'category_id' => $ad->category_id,
+            'title' => $ad->title,
+            'currency' => $ad->currency ,
+            'price' => $ad->price ,
+            'price_type' => $ad->price_type ,
+            'owner_name' => $ad->owner_name ,
+            'owner_phone' => $ad->owner_phone ,
+            'description' => $ad->description ,
+            'slug' => $ad->slug,
         ];
 
-        $this->post('/api/ads', $attributes);
+        $data['title'] = 'foo';
 
-        $this->assertDatabaseHas('ads', $attributes);
+        $response = $this->put('api/ads/' . $data['slug'], $data);
 
-        $this->get('api/ads')->assertSee($attributes['currency']);
+        $response->assertStatus(200);
 
     }
 
     /** @test */
-    public function an_ad_requires_a_price()
+    public function a_user_can_delete_an_ad()
     {
+        $ad = Ad::first();
 
-        $attributes = [
-            'price' => Ad::first()->price,
+        $data = [
+            'category_id' => $ad->category_id,
+            'title' => $ad->title,
+            'currency' => $ad->currency ,
+            'price' => $ad->price ,
+            'price_type' => $ad->price_type ,
+            'owner_name' => $ad->owner_name ,
+            'owner_phone' => $ad->owner_phone ,
+            'description' => $ad->description ,
+            'slug' => $ad->slug,
         ];
 
-        $this->post('/api/ads', $attributes);
+        $response = $this->delete('api/ads/' . $data['slug'], $data);
 
-        $this->assertDatabaseHas('ads', $attributes);
+        $response->assertStatus(204);
 
-        $this->get('api/ads')->assertSee($attributes['price']);
-
-    }
-
-    /** @test */
-    public function an_ad_requires_a_price_type()
-    {
-
-        $attributes = [
-            'price_type' => Ad::first()->price_type,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['price_type']);
 
     }
-
-    /** @test */
-    public function an_ad_requires_a_description()
-    {
-
-        $attributes = [
-            'description' => Ad::first()->description,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['description']);
-
-    }
-
-    /** @test */
-    public function an_ad_requires_a_slug()
-    {
-
-        $attributes = [
-            'slug' => Ad::first()->slug,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['slug']);
-
-    }
-
-    /** @test */
-    public function an_ad_requires_a_owner()
-    {
-
-        $attributes = [
-            'owner_name' => User::first()->name,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['owner_name']);
-
-    }
-
-    /** @test */
-    public function an_ad_requires_a_owner_phone()
-    {
-
-        $attributes = [
-            'owner_phone' => User::first()->phone,
-        ];
-
-        $this->post('/api/ads', $attributes);
-
-        $this->assertDatabaseHas('ads', $attributes);
-
-        $this->get('api/ads')->assertSee($attributes['owner_phone']);
-
-    }
-
 
 }

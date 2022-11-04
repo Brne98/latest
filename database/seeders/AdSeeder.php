@@ -16,14 +16,14 @@ class AdSeeder extends Seeder
      */
     public function run()
     {
-    $user = User::count() > 0 ? User::first() : User::factory()->create();
+        $user = User::count() > 0 ? User::first() : User::factory()->create();
 
-    Ad::factory(2)->create([
-        'owner_id' => $user['id'],
-        'category_id' => 1,
-        'owner_name' => $user['name'],
-        'owner_phone' => $user['phone'],
-    ]);
-}
+        Ad::factory(2)->create([
+            'owner_id' => $user['id'],
+            'category_id' => 1,
+            'owner_name' => $user['name'],
+            'owner_phone' => $user['phone'],
+        ]);
+        }
 
 }

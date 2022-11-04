@@ -24,8 +24,8 @@ Route::prefix('ads')->controller(AdController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{ad:slug}','show');
     Route::post('', 'store');
-    Route::put('{ad:id}', 'update');
-    Route::delete('{ad:id}', 'destroy');
+    Route::put('{ad:slug}', 'update');
+    Route::delete('{ad:slug}', 'destroy');
 });
 
 Route::prefix('categories')->controller(CategoryController::class)->group(function () {

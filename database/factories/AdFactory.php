@@ -27,6 +27,10 @@ class AdFactory extends Factory
         }
 
         return [
+            'owner_id' => $user['id'],
+            'category_id' => 1,
+            'owner_name' => $user['name'],
+            'owner_phone' => $user['phone'],
             'title' => fake()->word(),
             'currency' => fake()->word(),
             'price' => fake()->numberBetween(100, 1000),
