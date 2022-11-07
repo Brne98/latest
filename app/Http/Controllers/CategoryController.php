@@ -25,8 +25,7 @@ class CategoryController extends Controller
     public function store(){
         $data = request()->validate([
             'name' => 'required',
-            'parent_category' => '',
-            'slug' => 'required|unique',
+            'slug' => 'required',
         ]);
 
         Category::create($data);
@@ -38,8 +37,8 @@ class CategoryController extends Controller
     {
         $data = request()->validate( [
             'name' => 'required',
-            'parent_category' => 'required',
-            'slug' => 'required|unique',
+            'parent_category' => '',
+            'slug' => 'required',
         ]);
 
         $category->update($data);
@@ -47,7 +46,7 @@ class CategoryController extends Controller
         return $this->respondSuccess($category);
     }
 
-    public function delete(Category $category)
+    public function destroy(Category $category)
     {
         $category->delete();
 
