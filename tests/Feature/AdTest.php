@@ -75,7 +75,7 @@ class AdTest extends TestCase
     {
         $ad = Ad::first();
 
-        $response = $this->delete('api/ads/' . $ad->id, $ad);
+        $response = $this->delete('api/ads/' . $ad->id);
 
         $response->assertStatus(204);
     }
