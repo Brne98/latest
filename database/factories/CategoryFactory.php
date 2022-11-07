@@ -22,8 +22,8 @@ class CategoryFactory extends Factory
         return [
             'name' => fake()->word(),
             'slug' => fake()->slug(),
-            'created_by' =>$user['name'],
-            'updated_by' =>$user['name'],
+            'created_by' =>$user->name,
+            'updated_by' =>$user->name,
         ];
     }
 }

@@ -19,26 +19,24 @@ class AdFactory extends Factory
      */
     public function definition()
     {
-        $users = User::all();
-        if($users->count() > 0){
-            $user = User::first();
-        } else {
+        $user = User::first();
+        if($user == null ){
             $user = User::factory()->create();
         }
 
         return [
-            'owner_id' => $user['id'],
+            'owner_id' => $user->id,
             'category_id' => 1,
-            'owner_name' => $user['name'],
-            'owner_phone' => $user['phone'],
+            'owner_name' => $user->name,
+            'owner_phone' => $user->phone,
             'title' => fake()->word(),
-            'currency' => fake()->word(),
+            'currency' => 'rsd',
             'price' => fake()->numberBetween(100, 1000),
             'price_type' => fake()->word(),
             'description' => fake()->text(),
             'slug' => fake()->slug(),
-            'created_by' =>$user['name'],
-            'updated_by' =>$user['name'],
+            'created_by' =>$user->name,
+            'updated_by' =>$user->name,
         ];
     }
 }

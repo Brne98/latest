@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')->constrained('users','id')->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained('categories', 'id')->cascadeOnDelete();
+            $table->foreignId('owner_id')->constrained('users','id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('category_id')->constrained('categories', 'id')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('title');
             $table->string('currency');
             $table->integer('price');

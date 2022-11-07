@@ -64,7 +64,7 @@ class AdTest extends TestCase
 
         $data['title'] = 'foo';
 
-        $response = $this->put('api/ads/' . $data['slug'], $data);
+        $response = $this->put('api/ads/' . $data['id'], $data);
 
         $response->assertStatus(200);
 
@@ -75,23 +75,30 @@ class AdTest extends TestCase
     {
         $ad = Ad::first();
 
-        $data = [
-            'category_id' => $ad->category_id,
-            'title' => $ad->title,
-            'currency' => $ad->currency ,
-            'price' => $ad->price ,
-            'price_type' => $ad->price_type ,
-            'owner_name' => $ad->owner_name ,
-            'owner_phone' => $ad->owner_phone ,
-            'description' => $ad->description ,
-            'slug' => $ad->slug,
-        ];
-
-        $response = $this->delete('api/ads/' . $data['slug'], $data);
+        $response = $this->delete('api/ads/' . $ad['id'], $ad);
 
         $response->assertStatus(204);
+    }
 
+    /** @test  */
+    public function currency_must_be_rsd_or_usd()
+    {
+        $ad = Ad::first();
 
+        $data = [
+            'currency' => $ad->currency,
+        ];
+
+        if(in_array('rsd', $data) == true || in_array('usd', $data) == true)
+        {
+            $status = 200;
+        } else {
+            $status = 404;
+        }
+
+        $response = $this->get('api/ads');
+
+        $response->assertStatus($status);
     }
 
 }

@@ -18,7 +18,7 @@ class AdSeeder extends Seeder
     {
         $user = User::count() > 0 ? User::first() : User::factory()->create();
 
-        Ad::factory(2)->create([
+        Ad::factory(50)->create([
             'owner_id' => $user['id'],
             'category_id' => 1,
             'owner_name' => $user['name'],

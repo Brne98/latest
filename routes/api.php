@@ -23,47 +23,42 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-//Ads
 Route::prefix('ads')->controller(AdController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{ad:slug}','show');
     Route::post('', 'store');
-    Route::put('{ad:slug}', 'update');
-    Route::delete('{ad:slug}', 'destroy');
+    Route::put('{ad:id}', 'update');
+    Route::delete('{ad:id}', 'destroy');
 });
 
-//Categories
 Route::prefix('categories')->controller(CategoryController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{category:slug}','show');
     Route::post('', 'store');
-    Route::put('{category:slug}', 'update');
-    Route::delete('{category:slug}', 'destroy');
+    Route::put('{category:id}', 'update');
+    Route::delete('{category:id}', 'destroy');
 });
 
-//Locations
 Route::prefix('locations')->controller(LocationController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{location:slug}','show');
     Route::post('', 'store');
-    Route::put('{location:slug}', 'update');
-    Route::delete('{location:slug}', 'destroy');
+    Route::put('{location:id}', 'update');
+    Route::delete('{location:id}', 'destroy');
 });
 
-//Users
 Route::prefix('users')->controller(UserController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{user:slug}','show');
     Route::post('', 'store');
-    Route::put('{user:slug}', 'update');
-    Route::delete('{user:slug}', 'destroy');
+    Route::put('{user:id}', 'update');
+    Route::delete('{user:id}', 'destroy');
 });
 
-//Pictures
 Route::prefix('pictures')->controller(PictureController::class)->group(function () {
     Route::get('', 'index');
     Route::get('{picture:slug}','show');
     Route::post('', 'store');
-    Route::put('{picture:slug}', 'update');
-    Route::delete('{picture:slug}', 'destroy');
+    Route::put('{picture:id}', 'update');
+    Route::delete('{picture:id}', 'destroy');
 });
