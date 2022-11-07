@@ -64,7 +64,7 @@ class AdTest extends TestCase
 
         $data['title'] = 'foo';
 
-        $response = $this->put('api/ads/' . $data['id'], $data);
+        $response = $this->put('api/ads/' . $ad->id, $data);
 
         $response->assertStatus(200);
 
@@ -75,7 +75,7 @@ class AdTest extends TestCase
     {
         $ad = Ad::first();
 
-        $response = $this->delete('api/ads/' . $ad['id'], $ad);
+        $response = $this->delete('api/ads/' . $ad->id, $ad);
 
         $response->assertStatus(204);
     }
