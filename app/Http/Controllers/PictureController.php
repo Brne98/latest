@@ -79,6 +79,10 @@ class PictureController extends Controller
             'ad_name' => [Rule::exists('ads', 'title')]
         ]);
 
+        if(!str_contains($data['path'], './public/images/')){
+            $data['path'] = './public/images/'.$data['path'];
+        }
+
         $picture->update($data);
 
         return $this->respondSuccess($picture, 200);
