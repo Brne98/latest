@@ -20,14 +20,4 @@ class CategoryTest extends TestCase
 
         $this->post('/api/categories', $attributes)->assertInvalid('name');
     }
-
-//    /** @test */
-//    public function a_category_requires_slug()
-//    {
-//        $this->post('api/categories', $attributes);
-//
-//        $this->assertDatabaseHas('categories', $attributes);
-//
-//        $this->get('api/categories')->assertSee($attributes['slug']);
-//    }
 }

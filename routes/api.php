@@ -33,7 +33,7 @@ Route::prefix('ads')->controller(AdController::class)->group(function () {
 
 Route::prefix('categories')->controller(CategoryController::class)->group(function () {
     Route::get('', 'index');
-    Route::get('{category:slug}','show');
+    Route::get('/all', 'show');
     Route::post('', 'store');
     Route::put('{category:id}', 'update');
     Route::delete('{category:id}', 'destroy');

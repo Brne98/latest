@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,14 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
+        $user = User::first();
+        if($user == null ){
+            $user = User::factory()->create();
+        }
+
         return [
-            //
+            'owner_id' => $user->id,
+            'address' => $user->location,
         ];
     }
 }

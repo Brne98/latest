@@ -23,7 +23,7 @@ class UserFactory extends Factory
         return [
             'name'=> $name,
             'phone' => fake()->numerify('###-####-###'),
-            'location' => fake()->address(),
+            'location' => fake()->address,
             'remember_token' => Str::random(10),
             'created_by' => $name,
             'updated_by' => $name,
