@@ -6,11 +6,7 @@ use App\Models\Ad;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use function PHPUnit\Framework\isNull;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Picture>
- */
 class PictureFactory extends Factory
 {
     /**
@@ -35,7 +31,6 @@ class PictureFactory extends Factory
             'title' => fake()->word,
             'path' => './public/images/illustration-5.png',
             'ad_name' => $title,
-            'order' => fake()->word,
             'created_by' =>$user['name'],
             'updated_by' =>$user['name'],
         ];

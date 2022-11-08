@@ -56,9 +56,6 @@ Route::prefix('users')->controller(UserController::class)->group(function () {
 });
 
 Route::prefix('pictures')->controller(PictureController::class)->group(function () {
-    Route::get('', 'index');
-    Route::get('{picture:slug}','show');
     Route::post('', 'store');
-    Route::put('{picture:id}', 'update');
     Route::delete('{picture:id}', 'destroy');
 });

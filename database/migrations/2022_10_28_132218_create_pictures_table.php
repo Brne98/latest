@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('path');
             $table->string('ad_name');
-            $table->string('order');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
