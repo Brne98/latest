@@ -17,7 +17,7 @@ class PictureController extends Controller
            'owner_id' => 'required',
             'ad_id' => 'required',
             'title' => 'required',
-            'path' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'path' => 'required',
             'ad_name' => 'required',
         ]);
 
@@ -72,16 +72,16 @@ class PictureController extends Controller
     public function update(Picture $picture)
     {
         $data = request()->validate([
-            'owner_id' => ['required', Rule::exists('users', 'id')],
-            'ad_id' => ['required', Rule::exists('ads', 'id')],
+            'owner_id' => [Rule::exists('users', 'id')],
+            'ad_id' => [Rule::exists('ads', 'id')],
             'title' => 'required',
-            'path' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
-            'ad_name' => ['required', Rule::exists('users', 'name')],
+            'path' => 'required',
+            'ad_name' => [Rule::exists('ads', 'title')]
         ]);
 
         $picture->update($data);
 
-        return $this->respondSuccess($picture);
+        return $this->respondSuccess($picture, 200);
     }
 
     public function destroy(Picture $picture): JsonResponse
