@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
         $categories = Category::all();
 
@@ -22,7 +21,8 @@ class CategoryController extends Controller
         return $this->respondSuccess($category, 201);
     }
 
-    public function store(){
+    public function store(): JsonResponse
+    {
         $data = request()->validate([
             'name' => 'required',
             'slug' => 'required',
@@ -33,7 +33,7 @@ class CategoryController extends Controller
         return $this->respondSuccess($data, 201);
     }
 
-    public function update(Category $category)
+    public function update(Category $category): JsonResponse
     {
         $data = request()->validate( [
             'name' => 'required',
@@ -46,7 +46,7 @@ class CategoryController extends Controller
         return $this->respondSuccess($category);
     }
 
-    public function destroy(Category $category)
+    public function destroy(Category $category): JsonResponse
     {
         $category->delete();
 
