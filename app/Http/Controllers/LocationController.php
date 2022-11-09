@@ -10,9 +10,12 @@ class LocationController extends Controller
 {
     public function index(): JsonResponse
     {
-        $uri = request('per_page');
 
-        $locations = Location::paginate($uri);
+        $per_page= request('per_page');
+
+        var_dump(request('path'));
+
+        $locations = Location::paginate($per_page);
 
         return $this->respondSuccess($locations);
     }
