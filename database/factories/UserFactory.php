@@ -27,7 +27,6 @@ class UserFactory extends Factory
             'location_id' => $location->id,
             'name'=> $name,
             'phone' => fake()->numerify('###-####-###'),
-            'location' => fake()->address,
             'remember_token' => Str::random(10),
             'created_by' => $name,
             'updated_by' => $name,
