@@ -17,14 +17,11 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
-        $user = User::first();
-        if($user == null ){
-            $user = User::factory()->create();
-        }
 
         return [
-            'owner_id' => $user->id,
-            'address' => $user->location,
+            'name' => fake()->city,
+            'latitude' => fake()->latitude,
+            'longitude' => fake()->longitude,
         ];
     }
 }

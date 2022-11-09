@@ -10,13 +10,15 @@ class LocationController extends Controller
 {
     public function index(): JsonResponse
     {
-        $locations = Location::paginate();
+        $uri = request('per_page');
+
+        $locations = Location::paginate($uri);
 
         return $this->respondSuccess($locations);
     }
 
 
-    public function show(): JsonResponse
+    public function all(): JsonResponse
     {
         $locations = Location::all();
 
@@ -26,7 +28,6 @@ class LocationController extends Controller
     public function store(): JsonResponse
     {
         $location = request()->validate([
-            'owner_id' => 'required',
             'address' => 'required'
         ]);
 

@@ -41,7 +41,7 @@ Route::prefix('categories')->controller(CategoryController::class)->group(functi
 
 Route::prefix('locations')->controller(LocationController::class)->group(function () {
     Route::get('', 'index');
-    Route::get('{location:slug}','show');
+    Route::get('{location:slug}','all');
     Route::post('', 'store');
     Route::put('{location:id}', 'update');
     Route::delete('{location:id}', 'destroy');
