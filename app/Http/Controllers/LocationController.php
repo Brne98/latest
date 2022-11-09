@@ -13,9 +13,13 @@ class LocationController extends Controller
 
         $per_page= request('per_page');
 
-        var_dump(request('path'));
+        $page = request('current_page');
 
         $locations = Location::paginate($per_page);
+
+        if(isset($page)){
+            $locations['data']['current_page'] = $page;
+        }
 
         return $this->respondSuccess($locations);
     }
@@ -31,7 +35,9 @@ class LocationController extends Controller
     public function store(): JsonResponse
     {
         $location = request()->validate([
-            'address' => 'required'
+            'name' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
 
         Location::create($location);
@@ -42,8 +48,9 @@ class LocationController extends Controller
     public function update(Location $location): JsonResponse
     {
         $data = request()->validate([
-            'owner_id' => ['required', Rule::exists('users', 'id')],
-            'address' => 'required',
+            'name' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
 
 

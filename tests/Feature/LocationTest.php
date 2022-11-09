@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Controllers\LocationController;
+use App\Models\Location;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
@@ -13,7 +14,7 @@ class LocationTest extends TestCase
     {
         $response = $this->get('/api/locations/all');
 
-        $expected = DB::table('locations')->count();
+        $expected = Location::count();
 
         $actual = count($response['data']);
 

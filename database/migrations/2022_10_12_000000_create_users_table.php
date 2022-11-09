@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('location_id')->constrained('locations', 'id')->restrictOnDelete()->cascadeOnUpdate();
             $table->string('name');
             $table->string('phone')->unique();
-            $table->string('location');
             $table->rememberToken();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
