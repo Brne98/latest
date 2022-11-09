@@ -12,14 +12,12 @@ class LocationController extends Controller
     {
 
         $per_page= request('per_page');
+        $page = request('page');
 
-        $page = request('current_page');
-
-        $locations = Location::paginate($per_page);
-
-        if(isset($page)){
-            $locations['data']['current_page'] = $page;
-        }
+        $locations = [
+            Location::paginate($per_page),
+            Location::paginate($per_page)->currentPage($page)
+            ];
 
         return $this->respondSuccess($locations);
     }
