@@ -25,8 +25,9 @@ class CategoryController extends Controller
     {
         $data = request()->validate([
             'name' => 'required',
-            'slug' => 'required',
         ]);
+
+        $data['slug'] = $this->slug($data['name']);
 
         Category::create($data);
 
@@ -51,5 +52,10 @@ class CategoryController extends Controller
         $category->delete();
 
         return $this->respondSuccess($category);
+    }
+
+    private function slug(mixed $name): string
+    {
+        return strtolower(str_replace(' ', '-', $name));
     }
 }

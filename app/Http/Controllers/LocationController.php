@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Location;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\Rule;
 
 class LocationController extends Controller
 {
@@ -14,10 +13,7 @@ class LocationController extends Controller
         $per_page= request('per_page');
         $page = request('page');
 
-        $locations = [
-            Location::paginate($per_page),
-            Location::paginate($per_page)->currentPage($page)
-            ];
+        $locations = Location::paginate($per_page, ['*'],'locations', $page);
 
         return $this->respondSuccess($locations);
     }
@@ -50,7 +46,6 @@ class LocationController extends Controller
             'latitude' => 'required',
             'longitude' => 'required'
         ]);
-
 
         $location->update($data);
 
