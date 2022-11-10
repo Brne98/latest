@@ -33,7 +33,7 @@ Route::prefix('ads')->controller(AdController::class)->group(function () {
 
 Route::prefix('categories')->controller(CategoryController::class)->group(function () {
     Route::get('', 'index');
-    Route::get('{category:slug}','show');
+    Route::get('/all', 'show');
     Route::post('', 'store');
     Route::put('{category:id}', 'update');
     Route::delete('{category:id}', 'destroy');
@@ -41,7 +41,7 @@ Route::prefix('categories')->controller(CategoryController::class)->group(functi
 
 Route::prefix('locations')->controller(LocationController::class)->group(function () {
     Route::get('', 'index');
-    Route::get('{location:slug}','show');
+    Route::get('all','all');
     Route::post('', 'store');
     Route::put('{location:id}', 'update');
     Route::delete('{location:id}', 'destroy');
@@ -56,8 +56,6 @@ Route::prefix('users')->controller(UserController::class)->group(function () {
 });
 
 Route::prefix('pictures')->controller(PictureController::class)->group(function () {
-    Route::get('', 'index');
-    Route::get('{picture:slug}','show');
     Route::post('', 'store');
     Route::put('{picture:id}', 'update');
     Route::delete('{picture:id}', 'destroy');
