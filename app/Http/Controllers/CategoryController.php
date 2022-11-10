@@ -54,7 +54,7 @@ class CategoryController extends Controller
         return $this->respondSuccess($category);
     }
 
-    private function slug(mixed $name): string
+    private function slug($name): string
     {
         return strtolower(str_replace(' ', '-', $name));
     }
