@@ -66,6 +66,8 @@ class AdTest extends TestCase
 
         $response = $this->put('api/ads/' . $ad->id, $data);
 
+        $this->assertEquals($ad->id, $response['data']['id']);
+
         $response->assertStatus(200);
 
     }

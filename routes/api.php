@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\UserController;
@@ -59,4 +60,10 @@ Route::prefix('pictures')->controller(PictureController::class)->group(function 
     Route::post('', 'store');
     Route::put('{picture:id}', 'update');
     Route::delete('{picture:id}', 'destroy');
+});
+
+Route::prefix('files')->controller(FileController::class)->group(function () {
+    Route::post('upload-file', 'uploadFile');
+    Route::delete('remove-temporary-file', 'removeTemporaryFile');
+    Route::get('download-file/{name}', 'downloadFile');
 });
