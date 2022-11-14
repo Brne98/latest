@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class LocationFactory extends Factory
      */
     public function definition()
     {
+
         return [
-            //
+            'name' => fake()->city,
+            'latitude' => fake()->latitude,
+            'longitude' => fake()->longitude,
         ];
     }
 }

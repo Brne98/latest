@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,12 +18,14 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $location = Location::first();
+
         $name = fake()->name;
 
         return [
+            'location_id' => $location->id,
             'name'=> $name,
             'phone' => fake()->numerify('###-####-###'),
-            'location' => fake()->address(),
             'remember_token' => Str::random(10),
             'created_by' => $name,
             'updated_by' => $name,

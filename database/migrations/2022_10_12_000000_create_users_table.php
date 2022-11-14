@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pictures', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('owner_id')->constrained('users', 'id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('ad_id')->constrained('ads', 'id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('title');
-            $table->string('path');
-            $table->string('ad_name');
-            $table->string('order');
+            $table->foreignId('location_id')->constrained('locations', 'id')->restrictOnDelete()->cascadeOnUpdate();
+            $table->string('name');
+            $table->string('phone')->unique();
+            $table->rememberToken();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pictures');
+        Schema::dropIfExists('users');
     }
 };

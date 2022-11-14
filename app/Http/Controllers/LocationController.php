@@ -2,33 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ad;
 use App\Models\Location;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
     public function index(): JsonResponse
+    {
+
+        $per_page= request('per_page');
+        $page = request('page');
+
+        $locations = Location::paginate($per_page, ['*'],'locations', $page);
+
+        return $this->respondSuccess($locations);
+    }
+
+
+    public function all(): JsonResponse
     {
         $locations = Location::all();
 
         return $this->respondSuccess($locations);
     }
 
-
-    public function show(Location $location): JsonResponse
-    {
-        return $this->respondSuccess($location);
-    }
-
     public function store(): JsonResponse
     {
         $location = request()->validate([
-
+            'name' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
 
-        Ad::create($location);
+        Location::create($location);
 
         return $this->respondSuccess($location, 201);
     }
@@ -36,9 +42,10 @@ class LocationController extends Controller
     public function update(Location $location): JsonResponse
     {
         $data = request()->validate([
-
+            'name' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required'
         ]);
-
 
         $location->update($data);
 
