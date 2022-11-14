@@ -56,12 +56,6 @@ Route::prefix('users')->controller(UserController::class)->group(function () {
     Route::delete('{user:id}', 'destroy');
 });
 
-Route::prefix('pictures')->controller(PictureController::class)->group(function () {
-    Route::post('', 'store');
-    Route::put('{picture:id}', 'update');
-    Route::delete('{picture:id}', 'destroy');
-});
-
 Route::prefix('files')->controller(FileController::class)->group(function () {
     Route::post('upload-file', 'uploadFile');
     Route::delete('remove-temporary-file', 'removeTemporaryFile');
