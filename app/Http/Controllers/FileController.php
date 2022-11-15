@@ -41,13 +41,6 @@ class FileController extends Controller
         return $this->respondSuccess($fileName);
     }
 
-    public function removeTemporaryFile(Request $request): JsonResponse
-    {
-        $fileName = $request->get('name');
-        Storage::disk('public')->delete('files/temporary/'.$fileName);
-        return $this->respondSuccess($fileName);
-    }
-
     public function removeFile($name): JsonResponse
     {
         Storage::disk('public')->delete('images/'.$name);

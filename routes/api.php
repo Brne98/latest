@@ -58,7 +58,6 @@ Route::prefix('users')->controller(UserController::class)->group(function () {
 
 Route::prefix('files')->controller(FileController::class)->group(function () {
     Route::post('upload-file', 'uploadFile');
-    Route::delete('remove-temporary-file', 'removeTemporaryFile');
-    Route::delete('remove-file', 'removeFile');
+    Route::delete('remove-file/{name}', 'removeFile');
     Route::get('download-file/{name}', 'downloadFile');
 });
