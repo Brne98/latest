@@ -50,7 +50,7 @@ class FileController extends Controller
 
     public function removeFile($name): JsonResponse
     {
-        Storage::disk('public')->delete('files/'.$name);
+        Storage::disk('public')->delete('images/'.$name);
         return $this->respondSuccess($name);
     }
 
