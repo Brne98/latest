@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Nette\Utils\Image;
+use Intervention\Image\ImageManagerStatic as Image;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -25,8 +25,17 @@ class FileController extends Controller
         {
             Storage::putFileAs('app/public/files/temporary', $file, $fileName);
         } else {
-            $image = Image::make($file);
-            $image->save(storage_path('app/public/files/temporary'.$fileName));
+            $image = Image::make($file)
+                ->resize(3840, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });;
+            $image->save(storage_path('app/public/images/'.$fileName));
+
+            $thumbnail = Image::make($file)
+                ->resize(240, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });;
+            $thumbnail->save(storage_path('app/public/images/thumbnails/thumbnail_'.$fileName));
         }
 
         return $this->respondSuccess($fileName);
