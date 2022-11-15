@@ -49,7 +49,7 @@ class FileController extends Controller
 
     public function downloadFile($name)
     {
-        $response = new BinaryFileResponse(storage_path('app/public/files/'.$name));
+        $response = new BinaryFileResponse(storage_path('app/public/images/thumbnails/'.$name));
         return $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $name);
     }
 }
