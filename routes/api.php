@@ -50,7 +50,7 @@ Route::prefix('locations')->controller(LocationController::class)->group(functio
 
 Route::prefix('users')->controller(UserController::class)->group(function () {
     Route::get('', 'index');
-    Route::get('{user:slug}','show');
+    Route::get('{user:id}','show');
     Route::post('', 'store');
     Route::put('{user:id}', 'update');
     Route::delete('{user:id}', 'destroy');
