@@ -25,6 +25,8 @@ class UserFactory extends Factory
         return [
             'location_id' => $location->id,
             'name'=> $name,
+            'email'=> fake()->email,
+            'password'=> bcrypt(fake()->password),
             'phone' => fake()->numerify('###-####-###'),
             'remember_token' => Str::random(10),
             'created_by' => $name,
