@@ -55,3 +55,5 @@ Route::prefix('files')->controller(FileController::class)->group(function () {
 
 Route::post('auth/register', [AuthController::class, 'createUser']);
 Route::post('auth/login', [AuthController::class, 'loginUser']);
+
+Route::apiResource('ads', AdController::class)->middleware('auth:sanctum');

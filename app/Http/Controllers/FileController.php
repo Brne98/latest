@@ -13,7 +13,7 @@ class FileController extends Controller
 {
     public function uploadFile(Request $request): JsonResponse
     {
-        if (!Storage::exists('public/files')) {
+        if (!Storage::exists('public/files/temporary')) {
             Storage::makeDirectory('public/files/temporary');
         }
 
