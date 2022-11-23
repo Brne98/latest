@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function createUser(Request $request): JsonResponse
+    public function register(Request $request): JsonResponse
     {
         try {
             $validateUser = Validator::make($request->all(),
@@ -31,7 +31,7 @@ class AuthController extends Controller
             }
 
             $user = User::create([
-                'location_id' => 1,
+                'location_id' => $request->location_id,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -51,7 +51,7 @@ class AuthController extends Controller
         }
     }
 
-    public function loginUser(Request $request)
+    public function login(Request $request)
     {
         try {
             $validateUser = Validator::make($request->all(),

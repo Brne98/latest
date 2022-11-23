@@ -53,7 +53,7 @@ Route::prefix('files')->controller(FileController::class)->group(function () {
     Route::get('download-file/{name}', 'downloadFile');
 });
 
-Route::post('auth/register', [AuthController::class, 'createUser']);
-Route::post('auth/login', [AuthController::class, 'loginUser']);
+Route::post('auth/register', [AuthController::class, 'register']);
+Route::post('auth/login', [AuthController::class, 'login']);
 
 Route::apiResource('ads', AdController::class)->middleware('auth:sanctum');
