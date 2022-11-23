@@ -13,8 +13,8 @@ class FileController extends Controller
 {
     public function uploadFile(Request $request): JsonResponse
     {
-        if (!Storage::exists('public/images')) {
-            Storage::makeDirectory('public/images/thumbnails');
+        if (!Storage::exists('public/files/temporary')) {
+            Storage::makeDirectory('public/files/temporary');
         }
 
         $file = $request->file('file');
@@ -23,10 +23,10 @@ class FileController extends Controller
 
         if ($type === 'application/pdf')
         {
-            Storage::putFileAs('app/public/images/thumbnails', $file, $fileName);
+            Storage::putFileAs('app/public/files/temporary', $file, $fileName);
         } else {
-            $image = Image::make($file)->resize(3840);
-            $image->save(storage_path('app/public/images/thumbnails'.$fileName));
+            $image = Image::make($file);
+            $image->save(storage_path('app/public/files/temporary'.$fileName));
         }
 
         return $this->respondSuccess($fileName);

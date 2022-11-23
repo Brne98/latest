@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdController;
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\LocationController;
-use App\Http\Controllers\PictureController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,16 +47,13 @@ Route::prefix('locations')->controller(LocationController::class)->group(functio
     Route::delete('{location:id}', 'destroy');
 });
 
-Route::prefix('users')->controller(UserController::class)->group(function () {
-    Route::get('', 'index');
-    Route::get('{user:slug}','show');
-    Route::post('', 'store');
-    Route::put('{user:id}', 'update');
-    Route::delete('{user:id}', 'destroy');
-});
-
 Route::prefix('files')->controller(FileController::class)->group(function () {
     Route::post('upload-file', 'uploadFile');
     Route::delete('remove-temporary-file', 'removeTemporaryFile');
     Route::get('download-file/{name}', 'downloadFile');
 });
+
+Route::post('auth/register', [AuthController::class, 'register']);
+Route::post('auth/login', [AuthController::class, 'login']);
+
+Route::apiResource('ads', AdController::class)->middleware('auth:sanctum');
