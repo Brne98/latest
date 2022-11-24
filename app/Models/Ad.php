@@ -13,9 +13,9 @@ class Ad extends Model
     //Relationships
 
     //Has
-    public function pictures()
+    public function files()
     {
-        return $this->hasMany(Picture::class);
+        return $this->hasMany(File::class);
     }
 
     //Belongs

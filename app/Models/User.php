@@ -48,8 +48,8 @@ class User extends Authenticatable
         return $this->hasMany(Ad::class, 'owner_id');
     }
 
-    public function picture()
+    public function file()
     {
-        return $this->belongsTo(Picture::class);
+        return $this->belongsTo(File::class);
     }
 }
